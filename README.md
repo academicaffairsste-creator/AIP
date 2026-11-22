@@ -13,5 +13,5 @@ Web - AIP/
 Chi tiết website xem `website/README.md`.
 
 ## Deploy (Vercel)
-`vercel.json` ở gốc repo cho Vercel phục vụ thẳng thư mục `website/public` (web tĩnh, không cần build, không dùng `server.js`).
+Project Vercel `aip` (team affairs1) đặt Root Directory = `website`; `website/vercel.json` cho Vercel phục vụ thẳng thư mục `public/` (web tĩnh, không build, không dùng `server.js`).
 Thư mục `docs/` không được đưa lên web. Mỗi lần push lên nhánh `main`, Vercel tự cập nhật.
