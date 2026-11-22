@@ -53,8 +53,16 @@
   var list = $('#projects');
   /* ---- lộ trình 8 buổi (nguồn: Session_AIP_module.xlsx, sheet AIP) ---- */
   var S = [
-    { n: 1, ph: 'I', mod: 'AI Foundations', tools: 'Claude + Antigravity', c: 'AI Fundamentals' },
-    { n: 2, ph: 'I', mod: 'AI Foundations', tools: 'Claude + Antigravity', c: 'AI Fundamentals' },
+    { n: 1, ph: 'I', mod: 'AI Foundations', tools: 'Claude + Antigravity', c: 'AI Fundamentals · AI & LLM',
+      sum: 'Tìm hiểu cấu trúc, hệ sinh thái AI và cách các mô hình ngôn ngữ lớn (LLM) hoạt động ở mức khái niệm.',
+      topicsT: 'Nội dung chính',
+      topics: ['Phân biệt Trí tuệ nhân tạo (AI), Học máy (Machine Learning) và Học sâu (Deep Learning)', 'AI tạo sinh (Generative AI) và các Mô hình ngôn ngữ lớn (LLM)', 'Khái niệm nền tảng: Tokens, Vectors và Embeddings', '“Context window”, các hiểu biết quan trọng và nguyên nhân gây ra “Hallucination”'],
+      out: ['Hiểu cấu trúc và hệ sinh thái AI', 'Hiểu cách thức hoạt động của LLM ở mức độ khái niệm'] },
+    { n: 2, ph: 'I', mod: 'AI Foundations', tools: 'Claude + Antigravity', c: 'AI Fundamentals · Prompt & AI Agents',
+      sum: 'Viết prompt đúng kỹ thuật và nhận diện các nhóm ứng dụng AI trong doanh nghiệp, từ Chatbot đến AI Agents.',
+      topicsT: 'Nội dung chính',
+      topics: ['Prompt Engineering Frameworks và mô hình Context-Task-Constraint (CTC) để đảm bảo chất lượng đầu ra', 'Phân loại AI trong kinh doanh: Dự báo (Predictive), Tạo sinh (Generative), Phân tích (Analytical), Tự động hóa (Automation)', 'Đánh giá AI Agents: sự chuyển dịch từ “Chatbot” sang “Agents” tự chủ thực thi nhiệm vụ và sử dụng công cụ'],
+      out: ['Nắm được các nhóm ứng dụng AI trong doanh nghiệp', 'Phân tích được khả năng và những giới hạn của AI'] },
     { n: 3, ph: 'II', mod: 'Projects Workspace', tools: 'Claude', c: 'Claude Projects + Skill',
       sum: 'Dùng Claude Projects để số hoá một quy trình thực tế của doanh nghiệp, từ khi phát sinh nhu cầu đến khi đánh giá hiệu quả.',
       flowT: 'Case study · Quy trình đào tạo của đội ngũ L&D',
@@ -89,8 +97,10 @@
   function detail(x) {
     if (!x.sum) return '<p class="mut">Nội dung chi tiết sẽ được cập nhật.</p>';
     return '<div class="rb"><p class="lead">' + esc(x.sum) + '</p>' +
-      '<div class="blk"><h4>' + esc(x.flowT || 'Quy trình thực hành') + '</h4><ol class="flow">' +
-      x.flow.map(function (s, i) { return '<li><b>' + (i < 9 ? '0' : '') + (i + 1) + '</b>' + esc(s) + '</li>'; }).join('') + '</ol></div>' +
+      (x.topics ? '<div class="blk"><h4>' + esc(x.topicsT || 'Nội dung chính') + '</h4><ol class="topics" style="--c:' + (x.topics.length % 3 ? 2 : 3) + '">' +
+        x.topics.map(function (s, i) { return '<li><b>' + (i < 9 ? '0' : '') + (i + 1) + '</b><span>' + esc(s) + '</span></li>'; }).join('') + '</ol></div>' : '') +
+      (x.flow ? '<div class="blk"><h4>' + esc(x.flowT || 'Quy trình thực hành') + '</h4><ol class="flow">' +
+        x.flow.map(function (s, i) { return '<li><b>' + (i < 9 ? '0' : '') + (i + 1) + '</b>' + esc(s) + '</li>'; }).join('') + '</ol></div>' : '') +
       '<div class="cols">' +
       (x.demo ? '<div class="blk box"><h4>' + esc(x.demo.t) + '</h4>' + li(x.demo.items, 'dots') + '</div>' : '') +
       '<div class="blk box out"><h4>Đầu ra sau buổi học</h4>' + li(x.out, 'checks') + '</div>' +
