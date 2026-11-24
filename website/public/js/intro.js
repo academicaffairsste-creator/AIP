@@ -19,7 +19,7 @@
     '#roadmap .wrap > .eb', '.rhead h2', '#tabs button', '.rphase', '#rlist .row',
     '.porttxt .eb', '.porttxt h2', '.arrows button', '#projects .proj',
     '.proctxt .eb', '.proctxt h2', '.ptile', '.proc .steps li',
-    '.ctabar', '.foot .brand', '.foot nav a', '.soc a', '.fbot > span'
+    '.ctabar', '.foot .brand', '.st-logo', '.foot nav a', '.soc a', '.fbot > span'
   ];
   var BOX = '.nav .desk,#theme,.burger,.hero .cta > *,.svctxt .btn,.scard,#tabs button,#rlist .row,.arrows button,.proj,.ctabar,.soc a,.nav .brand,.foot .brand';
   var IMG = '.about-img,.ptile';

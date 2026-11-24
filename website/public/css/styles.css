@@ -310,3 +310,15 @@ html.intro .perch{opacity:0}html.intro .perch img,html.intro .perch .hi{animatio
 /* Thẻ dự án: tên + mô tả + buổi */
 .cap{right:48px}.cap b{font-size:15px;line-height:1.3}.cap p{margin:4px 0 6px;font-size:12.5px;line-height:1.4;opacity:.9}
 .proj::after{content:"";position:absolute;inset:40% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.55));z-index:1;pointer-events:none}
+
+/* Logo Starttrain: bản xanh cho nền sáng, bản trắng cho nền tối */
+.fbrand{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.st-logo{display:flex;align-items:center;gap:10px;margin-left:10px}
+.st-logo small{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+.st-logo img{display:block;height:34px;width:auto}
+.st-logo .dk{display:none}
+:root[data-theme=dark] .st-logo .lt{display:none}
+:root[data-theme=dark] .st-logo .dk{display:block}
+.st-logo:hover img{opacity:.8}
+.cta-logo{display:block;height:30px;width:auto;margin-bottom:14px;opacity:.95}
+@media(max-width:700px){.fbrand{gap:14px}.st-logo{padding-left:0;border-left:0;flex-direction:column;align-items:flex-start;gap:6px}.st-logo img{height:30px}.cta-logo{height:26px}}
