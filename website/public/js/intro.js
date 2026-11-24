@@ -19,10 +19,11 @@
     '#roadmap .wrap > .eb', '.rhead h2', '#tabs button', '.rphase', '#rlist .row',
     '.porttxt .eb', '.porttxt h2', '.arrows button', '#projects .proj',
     '.proctxt .eb', '.proctxt h2', '.ptile', '.proc .steps li',
+    '#instructors .wrap > .eb', '#instructors h2', '.ins-info > *', '.ins-photo', '.ins-bio', '.ins-cred h4', '.slot.logo',
     '.ctabar', '.foot .brand', '.st-logo', '.foot nav a', '.soc a', '.fbot > span'
   ];
-  var BOX = '.nav .desk,#theme,.burger,.hero .cta > *,.svctxt .btn,.scard,#tabs button,#rlist .row,.arrows button,.proj,.ctabar,.soc a,.nav .brand,.foot .brand';
-  var IMG = '.about-img,.ptile';
+  var BOX = '.slot.logo,.nav .desk,#theme,.burger,.hero .cta > *,.svctxt .btn,.scard,#tabs button,#rlist .row,.arrows button,.proj,.ctabar,.soc a,.nav .brand,.foot .brand';
+  var IMG = '.about-img,.ptile,.ins-photo';
   var CREW = [['Claude', '#F26A1B'], ['Antigravity', '#3186FF'], ['Skill', '#00A65A'], ['Cowork', '#8B5CF6'], ['Artifact', '#E8457A'], ['Plugin', '#D99A00'], ['Projects', '#0EA5A4']];
   var SPARK = ['#F26A1B', '#FF8A3D', '#FFB070', '#FFD36B', '#FFF1D6'];
 

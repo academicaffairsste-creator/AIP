@@ -9,7 +9,18 @@
     (function tryNext(i) {
       if (i >= EXT.length) return;
       var url = 'img/' + name + '.' + EXT[i], im = new Image();
-      im.onload = function () { el.classList.add('filled'); el.style.backgroundImage = 'url("' + url + '")'; };
+      im.onload = function () {
+        el.classList.add('filled');
+        // logo giảng viên: bản trắng dùng làm "mặt nạ" (chế độ tối = trắng);
+        // nếu có thêm img/<tên>-color.png thì chế độ sáng hiện logo màu chuẩn của đơn vị
+        if (el.classList.contains('logo')) {
+          var abs = function (u) { return 'url("' + new URL(u, location.href).href + '")'; }; // tuyệt đối vì biến CSS dùng trong css/styles.css
+          el.style.setProperty('--img', abs(url));
+          var c = new Image(), cu = 'img/' + name + '-color.png';
+          c.onload = function () { el.style.setProperty('--img-color', abs(cu)); el.classList.add('has-color'); };
+          c.src = cu;
+        } else el.style.backgroundImage = 'url("' + url + '")';
+      };
       im.onerror = function () { tryNext(i + 1); };
       im.src = url;
     })(0);
@@ -22,7 +33,70 @@
     if (save) { try { localStorage.setItem('theme', t); } catch (e) {} }
   }
   setTheme(root.dataset.theme === 'dark' ? 'dark' : 'light', false);
-  tb.addEventListener('click', function () { setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true); });
+  var themeHook = null; // mascot "nhận" việc đổi theme để diễn hoạt cảnh
+  tb.addEventListener('click', function () {
+    var to = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    if (themeHook) themeHook(to); else setTheme(to, true);
+  });
+
+  /* ---- mascot cạnh logo ----
+     - Sau ~2,5 phút: lấy tai nghe ra nghe nhạc, nhún nhảy chill (thử nhanh: ?chill=5).
+     - Bật chế độ tối: mascot vung đũa hô biến → trời tối → ngáp rồi đội mũ đi ngủ (zzz).
+     - Bật lại chế độ sáng: mascot thức dậy vẫy chào.
+     - Bấm mascot: đang nghe nhạc thì tháo tai nghe; đang ngủ thì trở mình; bình thường thì nghe nhạc ngay. */
+  (function () {
+    var p = document.querySelector('.nav .perch'); if (!p) return;
+    var m = /[?&]chill=(\d+)/.exec(location.search), WAIT = (m ? +m[1] : 150) * 1000, t = 0, busy = 0;
+    var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function dark() { return root.dataset.theme === 'dark'; }
+    function arm() { clearTimeout(t); if (!dark()) t = setTimeout(chill, WAIT); }
+    function chill() {
+      if (dark()) return;
+      p.classList.add('hp-up');                       // tai nghe bật ra, bay lên đầu
+      setTimeout(function () { p.classList.remove('hp-up'); if (!dark()) p.classList.add('chill'); }, 1100);
+    }
+    function later(fn, ms) { busy = setTimeout(fn, ms); }
+    var say = p.querySelector('.say');
+    function talk(txt) { if (txt) { say.textContent = txt; p.classList.add('talk'); } else p.classList.remove('talk'); }
+    var ALL = ['chill', 'hp-up', 'cast', 'look', 'yawn', 'wake', 'stir', 'talk'];
+    themeHook = function (to) {
+      clearTimeout(t); clearTimeout(busy);
+      ALL.forEach(function (c) { p.classList.remove(c); });
+      if (to === 'dark') {
+        if (calm || root.classList.contains('intro')) { setTheme('dark', true); p.classList.add('sleep'); return; }
+        if (p.classList.contains('sleep')) { setTheme('dark', true); return; }
+        p.classList.add('cast');                                            // 1. móc đũa ra hô biến
+        later(function () {
+          setTheme('dark', true); p.classList.remove('cast');               // 2. trời tối
+          later(function () {
+            p.classList.add('look'); talk('Ủa, trời tối rồi hả?');          // 3. ~5 giây sau: ngó nghiêng
+            later(function () {
+              p.classList.remove('look'); p.classList.add('yawn'); talk('Thôi, tui đi ngủ nha 😴'); // 4. ngáp
+              later(function () { p.classList.remove('yawn'); talk(''); p.classList.add('sleep'); }, 1800); // 5. ngủ
+            }, 2400);
+          }, 2600);
+        }, 800);
+      } else {
+        setTheme('light', true);
+        if (calm || !p.classList.contains('sleep')) { p.classList.remove('sleep'); arm(); return; }
+        later(function () {                                                 // 1. vẫn ngủ thêm vài giây
+          p.classList.remove('sleep'); p.classList.add('wake'); talk('Ủa, sáng rồi hả? ☀️'); // 2. mở mắt, ngạc nhiên
+          later(function () {
+            p.classList.remove('wake'); talk('');
+            chill();                                                        // 3. dậy và bắt đầu nghe nhạc
+          }, 2200);
+        }, 3000);
+      }
+    };
+    p.addEventListener('click', function (e) {
+      e.preventDefault(); e.stopPropagation();
+      if (p.classList.contains('sleep')) { p.classList.remove('stir'); void p.offsetWidth; p.classList.add('stir'); return; }
+      if (p.classList.contains('chill') || p.classList.contains('hp-up')) { p.classList.remove('chill', 'hp-up'); arm(); }
+      else { clearTimeout(t); chill(); }
+    });
+    if (dark()) p.classList.add('sleep');
+    (function ready() { if (root.classList.contains('intro')) return setTimeout(ready, 1000); arm(); })();
+  })();
 
   /* ---- menu mobile ---- */
   var burger = $('#burger'), menu = $('#menu');
@@ -53,12 +127,12 @@
   var list = $('#projects');
   /* ---- lộ trình 8 buổi (nguồn: Session_AIP_module.xlsx, sheet AIP) ---- */
   var S = [
-    { n: 1, ph: 'I', mod: 'AI Foundations', tools: 'Claude + Antigravity', c: 'AI Fundamentals · AI & LLM',
+    { n: 1, ph: 'I', mod: 'AI Foundations', tools: 'Claude', c: 'AI Fundamentals · AI & LLM',
       sum: 'Tìm hiểu cấu trúc, hệ sinh thái AI và cách các mô hình ngôn ngữ lớn (LLM) hoạt động ở mức khái niệm.',
       topicsT: 'Nội dung chính',
       topics: ['Phân biệt Trí tuệ nhân tạo (AI), Học máy (Machine Learning) và Học sâu (Deep Learning)', 'AI tạo sinh (Generative AI) và các Mô hình ngôn ngữ lớn (LLM)', 'Khái niệm nền tảng: Tokens, Vectors và Embeddings', '“Context window”, các hiểu biết quan trọng và nguyên nhân gây ra “Hallucination”'],
       out: ['Hiểu cấu trúc và hệ sinh thái AI', 'Hiểu cách thức hoạt động của LLM ở mức độ khái niệm'] },
-    { n: 2, ph: 'I', mod: 'AI Foundations', tools: 'Claude + Antigravity', c: 'AI Fundamentals · Prompt & AI Agents',
+    { n: 2, ph: 'I', mod: 'AI Foundations', tools: 'Claude', c: 'AI Fundamentals · Prompt & AI Agents',
       sum: 'Viết prompt đúng kỹ thuật và nhận diện các nhóm ứng dụng AI trong doanh nghiệp, từ Chatbot đến AI Agents.',
       topicsT: 'Nội dung chính',
       topics: ['Prompt Engineering Frameworks và mô hình Context-Task-Constraint (CTC) để đảm bảo chất lượng đầu ra', 'Phân loại AI trong kinh doanh: Dự báo (Predictive), Tạo sinh (Generative), Phân tích (Analytical), Tự động hóa (Automation)', 'Đánh giá AI Agents: sự chuyển dịch từ “Chatbot” sang “Agents” tự chủ thực thi nhiệm vụ và sử dụng công cụ'],

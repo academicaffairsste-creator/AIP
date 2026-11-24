@@ -33,8 +33,17 @@ website/
 | `project1` … `project4` | 4 thẻ Dự án thực hành | **còn thiếu** |
 | `mascot-broom.png` | Mascot cưỡi chổi (intro) | có |
 | `mascot.png` | Mascot đứng cạnh logo, vẫy chào | có |
+| `mascot-music.png`, `headphones.png` | Mascot đeo tai nghe nghe nhạc (sau ~2,5 phút) | có |
+| `mascot-sleep.png` | Mascot đội mũ ngủ (chế độ tối) | có |
 | `process-tile.png` | Khối ngôi sao phần Cách học | có |
+| `gv-son` `gv-phuc` | Ảnh tròn của 2 giảng viên | **còn thiếu** |
+| `gv-son-hv1` … `gv-son-hv6` | Logo học vấn thầy Sơn: UEH, Harvard Business School, Ateneo de Manila, MIT Sloan, AFP, CIMA | có |
+| `gv-son-kn1` … `gv-son-kn6` | Logo kinh nghiệm thầy Sơn: Wilmar, Pebsteel, FrieslandCampina, Lazada, Masan Group, Đồng Tâm Group | có |
+| `gv-phuc-hv1` … `gv-phuc-hv3` | Logo học vấn anh Phúc: Nguyen Tat Thanh University, TechData.AI, Aptech | có |
+| `gv-phuc-kn1` | Logo kinh nghiệm anh Phúc: Japana | có |
 | `antigravity.svg` | Logo Antigravity trong lộ trình | có |
 
 ## Sửa nội dung lộ trình
 Dữ liệu 8 buổi nằm ở mảng `S` trong `public/js/app.js`. Nguồn: `../docs/AIP_Lo_trinh_8_buoi_dien_noi_dung.docx`.
+
+Mỗi logo giảng viên có 2 file: `gv-…png` (bản **trắng**, nền trong suốt, dùng ở chế độ tối) và `gv-…-color.png` (bản **màu chuẩn** của đơn vị, dùng ở chế độ sáng). Thiếu bản màu thì chế độ sáng tự tô bản trắng thành xám đậm. Hiện còn thiếu `gv-son-hv6-color.png` (CIMA).
