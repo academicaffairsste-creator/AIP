@@ -1,4 +1,4 @@
-/* Intro "Swarm Rebuild" – bản tự viết cho website AIP (không dùng code của extension swarm-cursors).
+/* Intro "Swarm Rebuild" – bản tự viết cho website AIM (không dùng code của extension swarm-cursors).
    Ý tưởng: trang bắt đầu trống; mascot cầm đũa phép chỉ huy một đàn con trỏ "nhiều người dùng".
    Mỗi con trỏ nhận một việc rồi tự làm, từ trên xuống dưới, trang tự cuộn theo:
      - khối (nút, thẻ, ô, thanh CTA): kéo khung bằng dấu thập, hiện badge "W × H", rồi khối hiện ra
@@ -193,7 +193,7 @@
     } else if (phase === 'outro') { // tụ về mascot rồi cùng bay đi
       var q = (now - endAt) / 1800;
       cursors.forEach(function (c) { c.alpha = Math.max(0, 1 - Math.max(0, q - 0.3) * 4); });
-      if (q >= 0.6) return finish(true); // mascot bay về đứng cạnh chữ "AI Productivity"
+      if (q >= 0.6) return finish(true); // mascot bay về đứng cạnh chữ "AI Mastery"
     }
 
     /* --- chạy kịch bản của từng con trỏ --- */

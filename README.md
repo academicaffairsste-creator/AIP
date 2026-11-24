@@ -2,7 +2,7 @@
 
 ```
 Web - AIP/
-├─ website/   website khóa AI Productivity (chạy: cd website && npm start → http://localhost:3200)
+├─ website/   website khóa AI Mastery - AIM (chạy: cd website && npm start → http://localhost:3200)
 └─ docs/      tài liệu nguồn
    ├─ Session_AIP_module.xlsx                  nội dung các khóa (sheet AIP)
    ├─ AIP_Lo_trinh_8_buoi_dien_noi_dung.docx   nội dung chi tiết 8 buổi

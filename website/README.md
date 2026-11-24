@@ -1,6 +1,6 @@
-# AIP Website
+# AIM Website
 
-Website thông tin khóa **AI Productivity (AIP)**. Node.js thuần, không cần cài thư viện.
+Website thông tin khóa **AI Mastery (AIM)**. Node.js thuần, không cần cài thư viện.
 
 ## Chạy
 ```bash

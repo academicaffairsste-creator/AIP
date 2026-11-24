@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Website thông tin khóa AI Productivity (AIP). Node.js thuần + HTML/CSS/JS thuần, không dependency.
+Website thông tin khóa AI Mastery (AIM). Node.js thuần + HTML/CSS/JS thuần, không dependency.
 
 ## Lệnh
 - `npm start` → http://localhost:3200 (chạy trong thư mục `website/`)

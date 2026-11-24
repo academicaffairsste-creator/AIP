@@ -30,4 +30,4 @@ http.createServer((req, res) => {
     if (err) return send(res, 404, 'Not found', 'text/plain; charset=utf-8');
     send(res, 200, buf, MIME[path.extname(file).toLowerCase()] || 'application/octet-stream');
   });
-}).listen(PORT, () => console.log(`AIP website: http://localhost:${PORT}`));
+}).listen(PORT, () => console.log(`AIM website: http://localhost:${PORT}`));
