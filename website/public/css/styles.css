@@ -314,7 +314,6 @@ html.intro .perch{opacity:0}html.intro .perch img,html.intro .perch .hi{animatio
 /* Logo Starttrain: bản xanh cho nền sáng, bản trắng cho nền tối */
 .fbrand{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
 .st-logo{display:flex;align-items:center;gap:10px;margin-left:10px}
-.st-logo small{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
 .st-logo img{display:block;height:34px;width:auto}
 .st-logo .dk{display:none}
 :root[data-theme=dark] .st-logo .lt{display:none}
@@ -322,3 +321,21 @@ html.intro .perch{opacity:0}html.intro .perch img,html.intro .perch .hi{animatio
 .st-logo:hover img{opacity:.8}
 .cta-logo{display:block;height:30px;width:auto;margin-bottom:14px;opacity:.95}
 @media(max-width:700px){.fbrand{gap:14px}.st-logo{padding-left:0;border-left:0;flex-direction:column;align-items:flex-start;gap:6px}.st-logo img{height:30px}.cta-logo{height:26px}}
+
+/* Logo Starttrain góc trên bên phải (thanh menu) */
+.navin{justify-content:flex-start;gap:0}
+.navin .brand{margin-right:24px}
+.nav nav{margin:0 auto;gap:30px}
+.nav-st{display:flex;align-items:center;margin-left:20px;flex:none}
+.nav-st img{display:block;height:28px;width:auto}
+.nav-st .dk,.st-logo .dk{display:none}
+:root[data-theme=dark] .nav-st .lt{display:none}
+:root[data-theme=dark] .nav-st .dk{display:block}
+.nav-st:hover img{opacity:.8}
+@media(max-width:1180px){.nav nav{gap:20px}.nav nav a:not(.btn){font-size:12px}}
+@media(max-width:960px){.navin .brand{margin-right:0}.nav nav{margin:0}}
+@media(max-width:700px){
+ .navin{gap:8px}.nav-st{order:4;margin-left:2px}.nav-st img{height:22px}
+ #theme{margin-left:auto}
+}
+@media(max-width:420px){.navin .brand b{display:none}}
