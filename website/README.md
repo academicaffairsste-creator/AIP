@@ -36,7 +36,7 @@ website/
 | `mascot-music.png`, `headphones.png` | Mascot đeo tai nghe nghe nhạc (sau ~2,5 phút) | có |
 | `mascot-sleep.png` | Mascot đội mũ ngủ (chế độ tối) | có |
 | `process-tile.png` | Khối ngôi sao phần Cách học | có |
-| `gv-son` `gv-phuc` | Ảnh tròn của 2 giảng viên | **còn thiếu** |
+| `gv-son.webp` `gv-phuc.webp` | Ảnh 2 giảng viên (đã tách nền), đứng trong vòng tròn, đầu nhô lên | có |
 | `gv-son-hv1` … `gv-son-hv6` | Logo học vấn thầy Sơn: UEH, Harvard Business School, Ateneo de Manila, MIT Sloan, AFP, CIMA | có |
 | `gv-son-kn1` … `gv-son-kn6` | Logo kinh nghiệm thầy Sơn: Wilmar, Pebsteel, FrieslandCampina, Lazada, Masan Group, Đồng Tâm Group | có |
 | `gv-phuc-hv1` … `gv-phuc-hv3` | Logo học vấn anh Phúc: Nguyen Tat Thanh University, TechData.AI, Aptech | có |
