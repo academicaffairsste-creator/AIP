@@ -13,7 +13,7 @@
   /* ===== 1. Bản thiết kế: các thành phần cần dựng ===== */
   var SEL = [
     '.nav .brand', '#menu a', '.nav .desk', '.burger', '#theme',
-    '.herotxt .eb', '.hero h1', '.hero .sub', '.hero .cta > *',
+    '.herotxt .eb', '.hero h1', '.hero .tagline', '.hero .sub', '.hero .cta > *',
     '.about-img', '.abtxt .eb', '.abtxt h2', '.abtxt .mut', '.stats > div',
     '.svctxt .eb', '.svctxt h2', '.svctxt .btn', '.scard',
     '#roadmap .wrap > .eb', '.rhead h2', '#tabs button', '.rphase', '#rlist .row',

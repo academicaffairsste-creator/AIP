@@ -425,3 +425,8 @@ html.intro .perch{opacity:0}html.intro .perch img,html.intro .perch .hi{animatio
 .perch.wake .m-hi{animation:wake 2.2s cubic-bezier(.34,1.56,.64,1)}
 @keyframes wake{0%{transform:translateY(4px) scale(.85);opacity:0}20%{transform:translateY(-7px) scale(1.08);opacity:1}30%{transform:none}45%{transform:rotate(-8deg)}60%{transform:rotate(8deg)}75%,100%{transform:none}}
 @media(max-width:700px){.perch .say{left:0;transform:translateX(-30%) scale(.6)}.perch.talk .say{transform:translateX(-30%) scale(1)}}
+
+/* Hero: tiêu đề "AI Mastery." + tiêu đề phụ */
+.hero h1{margin-bottom:14px}
+.hero .tagline{margin:0 0 18px;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+@media(max-width:700px){.hero h1{margin-bottom:10px}.hero .tagline{font-size:20px;margin-bottom:14px}}
