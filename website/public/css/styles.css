@@ -439,4 +439,4 @@ html.intro .perch{opacity:0}html.intro .perch img,html.intro .perch .hi{animatio
 @media(max-width:960px){.ins-photo{justify-self:start;width:200px;height:200px;margin-top:50px}.ins-photo img{clip-path:inset(-40% -20% 0 -20% round 0 0 100px 100px)}}
 
 /* Ảnh dự án Supply Chain: ảnh vuông có chữ → hiện trọn chiều ngang, nền cùng tông ảnh để không bị cắt chữ */
-.proj .slot[data-slot=project4].filled{background-color:#101319;background-size:100% auto;background-position:center 6%;background-repeat:no-repeat}
+.proj .slot[data-slot=project4].filled,.proj .slot[data-slot=project3].filled,.proj .slot[data-slot=project2].filled{background-color:#12171b;background-size:100% auto;background-position:center 6%;background-repeat:no-repeat}

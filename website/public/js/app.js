@@ -5,7 +5,7 @@
   /* ---- vị trí hình: bỏ file img/<slot>.(webp|png|jpg|jpeg|svg) là tự hiện ---- */
   var EXT = ['webp', 'png', 'jpg', 'jpeg', 'svg'];
   // V đổi mỗi khi thêm ảnh mới: tránh việc trình duyệt nhớ kết quả "chưa có ảnh" (404) từ lần mở trước
-  var V = '?v=20261126';
+  var V = '?v=20261126d';
   document.querySelectorAll('.slot[data-slot]').forEach(function (el) {
     var name = el.dataset.slot;
     (function tryNext(i) {
