@@ -33,7 +33,7 @@ website/
 | `project4.webp` | Thẻ dự án Supply Chain (buổi 7-8) | có |
 | `project3.webp` | Thẻ dự án Performance Management (buổi 6, Artifact) | có |
 | `project2.webp` | Thẻ dự án Sales Execution (buổi 5) | có |
-| `project1` | Thẻ dự án HR (buổi 3) | **còn thiếu** |
+| `project1.webp` | Thẻ dự án HR (buổi 3) | có |
 | `mascot-broom.png` | Mascot cưỡi chổi (intro) | có |
 | `mascot.png` | Mascot đứng cạnh logo, vẫy chào | có |
 | `mascot-music.png`, `headphones.png` | Mascot đeo tai nghe nghe nhạc (sau ~2,5 phút) | có |
