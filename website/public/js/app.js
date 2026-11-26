@@ -4,11 +4,13 @@
 
   /* ---- vị trí hình: bỏ file img/<slot>.(webp|png|jpg|jpeg|svg) là tự hiện ---- */
   var EXT = ['webp', 'png', 'jpg', 'jpeg', 'svg'];
+  // V đổi mỗi khi thêm ảnh mới: tránh việc trình duyệt nhớ kết quả "chưa có ảnh" (404) từ lần mở trước
+  var V = '?v=20261126';
   document.querySelectorAll('.slot[data-slot]').forEach(function (el) {
     var name = el.dataset.slot;
     (function tryNext(i) {
       if (i >= EXT.length) return;
-      var url = 'img/' + name + '.' + EXT[i], im = new Image();
+      var url = 'img/' + name + '.' + EXT[i] + V, im = new Image();
       im.onload = function () {
         el.classList.add('filled');
         // logo giảng viên: bản trắng dùng làm "mặt nạ" (chế độ tối = trắng);
@@ -16,7 +18,7 @@
         if (el.classList.contains('logo')) {
           var abs = function (u) { return 'url("' + new URL(u, location.href).href + '")'; }; // tuyệt đối vì biến CSS dùng trong css/styles.css
           el.style.setProperty('--img', abs(url));
-          var c = new Image(), cu = 'img/' + name + '-color.png';
+          var c = new Image(), cu = 'img/' + name + '-color.png' + V;
           c.onload = function () { el.style.setProperty('--img-color', abs(cu)); el.classList.add('has-color'); };
           c.src = cu;
         } else el.style.backgroundImage = 'url("' + url + '")';
