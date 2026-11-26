@@ -30,7 +30,8 @@ website/
 | `hero-bg.jpg` | Nền phần Hero | có |
 | `about.png` | Sơ đồ phần Giới thiệu | có |
 | `module1` `module2` `module3` | 3 thẻ học phần | có |
-| `project1` … `project4` | 4 thẻ Dự án thực hành | **còn thiếu** |
+| `project4.webp` | Thẻ dự án Supply Chain (buổi 7-8) | có |
+| `project1` … `project3` | Thẻ dự án HR, Sales Execution, Performance Management | **còn thiếu** |
 | `mascot-broom.png` | Mascot cưỡi chổi (intro) | có |
 | `mascot.png` | Mascot đứng cạnh logo, vẫy chào | có |
 | `mascot-music.png`, `headphones.png` | Mascot đeo tai nghe nghe nhạc (sau ~2,5 phút) | có |
