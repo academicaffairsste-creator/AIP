@@ -1,6 +1,6 @@
 /* Intro "Swarm Rebuild" – bản tự viết cho website AIM (không dùng code của extension swarm-cursors).
    Ý tưởng: trang bắt đầu trống; mascot cầm đũa phép chỉ huy một đàn con trỏ "nhiều người dùng".
-   Mỗi con trỏ nhận một việc rồi tự làm, từ trên xuống dưới, trang tự cuộn theo:
+   Mỗi con trỏ nhận một việc rồi tự làm, từ trên xuống dưới. CHỈ dựng thanh menu + banner đầu trang; các phần bên dưới tự hiện khi cuộn tới:
      - khối (nút, thẻ, ô, thanh CTA): kéo khung bằng dấu thập, hiện badge "W × H", rồi khối hiện ra
      - ảnh: kéo khung, ảnh quét từ trên xuống
      - chữ: thả con trỏ chữ I, gõ từng ký tự với dấu nháy, có đường gióng đỏ kiểu Figma
@@ -12,16 +12,9 @@
 
   /* ===== 1. Bản thiết kế: các thành phần cần dựng ===== */
   var SEL = [
-    '.nav .brand', '#menu a', '.nav .desk', '.burger', '#theme',
-    '.herotxt .eb', '.hero h1', '.hero .tagline', '.hero .sub', '.hero .cta > *',
-    '.about-img', '.abtxt .eb', '.abtxt h2', '.abtxt .mut', '.stats > div',
-    '.svctxt .eb', '.svctxt h2', '.svctxt .btn', '.scard',
-    '#roadmap .wrap > .eb', '.rhead h2', '#tabs button', '.rphase', '#rlist .row',
-    '.porttxt .eb', '.porttxt h2', '.arrows button', '#projects .proj',
-    '.proctxt .eb', '.proctxt h2', '.ptile', '.proc .steps li',
-    '#instructors .wrap > .eb', '#instructors h2', '.ins-info > *', '.ins-photo', '.ins-bio', '.ins-cred h4', '.slot.logo',
-    '.ctabar', '.foot .brand', '.st-logo', '.foot nav a', '.soc a', '.fbot > span'
-  ];
+    '.nav .brand', '#menu a', '.nav .desk', '.burger', '#theme', '.nav-st',
+    '.herotxt .eb', '.hero h1', '.hero .tagline', '.hero .sub', '.hero .cta > *'
+  ]; // chỉ banner đầu trang; các phần bên dưới tự hiện khi cuộn tới
   var BOX = '.slot.logo,.nav .desk,#theme,.burger,.hero .cta > *,.svctxt .btn,.scard,#tabs button,#rlist .row,.arrows button,.proj,.ctabar,.soc a,.nav .brand,.foot .brand';
   var IMG = '.about-img,.ptile,.ins-photo';
   var CREW = [['Claude', '#F26A1B'], ['Antigravity', '#3186FF'], ['Skill', '#00A65A'], ['Cowork', '#8B5CF6'], ['Artifact', '#E8457A'], ['Plugin', '#D99A00'], ['Projects', '#0EA5A4']];
@@ -36,7 +29,7 @@
     document.querySelectorAll(s).forEach(function (el) {
       if (seen.has(el)) return; seen.add(el);
       var r = el.getBoundingClientRect();
-      if (r.width < 2 || r.height < 2) return;
+      if (r.width < 2 || r.height < 2 || r.top > vh) return;
       el.classList.add('ir');
       tasks.push({ el: el, kind: el.matches(IMG) ? 'img' : el.matches(BOX) ? 'box' : 'text', state: 0 });
     });
@@ -172,7 +165,7 @@
     } else if (phase === 'build') {
       // giao việc: việc tiếp theo trong màn hình → con trỏ rảnh
       var next = tasks.find(function (t) { return t.state === 0; });
-      if (next && (next.top < sy + vh * 0.88 || sy >= root.scrollHeight - vh - 2)) {
+      if (next) {
         var free = cursors.find(function (c) { return !c.task; });
         if (free) {
           next.state = 1; free.task = next; free.run = job(free, next);
@@ -180,12 +173,6 @@
         }
       }
       if (!tasks.some(function (t) { return t.state < 2; })) { phase = 'outro'; endAt = now; }
-      // cuộn theo việc còn dang dở sớm nhất
-      var pend = tasks.find(function (t) { return t.state < 2; });
-      if (pend) {
-        var want = Math.max(0, Math.min(root.scrollHeight - vh, pend.top - vh * 0.3));
-        if (want > sy + 1) window.scrollTo({ top: sy + (want - sy) * 0.035 + 0.6, behavior: 'instant' });
-      }
       // mascot bay theo nhóm đang làm việc
       var busy = cursors.filter(function (c) { return c.task; }), ax = vw * 0.7, ay = vh * 0.3;
       if (busy.length) { ax = 0; ay = 0; busy.forEach(function (c) { ax += c.x; ay += c.y - scrollY; }); ax = ax / busy.length + 120; ay = ay / busy.length - 90; }
@@ -303,7 +290,7 @@
     }, FLY_MS);
   }
   function stop() { finish(false); }
-  /* Trong lúc dựng: khoá cuộn tay (trang tự cuộn theo mascot) thay vì tắt hiệu ứng.
+  /* Trong lúc dựng banner: khoá cuộn tay (intro chỉ vài giây) thay vì tắt hiệu ứng.
      Bỏ qua chỉ bằng nút "Bỏ qua" hoặc phím Esc. */
   var SCROLL_KEYS = { ' ': 1, ArrowUp: 1, ArrowDown: 1, PageUp: 1, PageDown: 1, Home: 1, End: 1 };
   function block(e) { e.preventDefault(); }
